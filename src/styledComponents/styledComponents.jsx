@@ -1,4 +1,9 @@
 import styled,{css} from 'styled-components';
+import {injectGlobal} from 'styled-components';
+
+injectGlobal`
+  @import url('https://fonts.googleapis.com/css?family=Patua+One|Raleway|Macondo');
+  `
 
 export const StyledAppTemplate = styled.div`
   position : absolute;
@@ -139,4 +144,32 @@ export const StyledStore = styled.div`
   width : 80%;
   display: flex;
   flex-direction: row;
+  margin : 0 auto;
+  border : 1px solid black;
+`
+
+export const StyledStoreItem = styled.div`
+  background-image: -webkit-radial-gradient(circle at top right,white,#999);
+  background-image: -o-radial-gradient(circle at top right,white,#999);
+  background-image: -moz-radial-gradient(circle at top right,white,#999);
+  background-image: radial-gradient(circle at top right,white,#999);
+  border : 5px solid #dfdedc;
+  width : 80px;
+  height : 80px;
+  border-radius: 80px;
+
+  .storeItemTitle {
+    font-family: 'Macondo', cursive;
+    font-size: 13px;
+    font-weight: bold;
+    margin : 8px 0 0 0;
+  }
+
+  .storeItemImage{
+     
+  }
+
+  .separator{
+    width : 50px;
+  }
 `
