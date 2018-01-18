@@ -2,7 +2,7 @@ import styled,{css} from 'styled-components';
 import {injectGlobal} from 'styled-components';
 
 injectGlobal`
-  @import url('https://fonts.googleapis.com/css?family=Patua+One|Raleway|Macondo');
+  @import url('https://fonts.googleapis.com/css?family=Patua+One|Raleway|Macondo|Exo+2|Acme');
   `
 
 export const StyledAppTemplate = styled.div`
@@ -93,16 +93,17 @@ export const StyledSpeaker = styled.div`
   background-color: #6b7071;
   border-radius: 5px;
   height : 120px;
-  width : 100px;
+  width : 110px;
   border : none;
   box-shadow: 0.8px 0.8px 10px #999;
+  padding: 0 5px;
 `
 
 export const SpeakerItem = styled.div`
   background-color: #5f6363;
   border-radius: 3px;
   height : 80px;
-  width : 80px;
+  width : 88px;
   margin : 10px auto 0 auto;
   padding: 0 ;
   border : none;
@@ -125,10 +126,23 @@ export const SpeakerImage = styled.img`
 
 export const SpeakerTitle = styled.p`
   font-size: 13px;
-  font-weight: 600;
+  /*font-family: 'Exo 2', sans-serif;*/
+  font-family: 'Acme', sans-serif;
   color : #d0d0cb;
-  line-height: 0.8em;
-  margin : 10px 0  0 0  ;
+  line-height: 1em;
+  margin : 2px 0  0 0  ;
+  ${({isSpeaking}) => {
+    if(isSpeaking)
+      return css`
+        margin : 2px 0 0 0 ;
+
+      `
+    else
+       return css`
+         margin : 10px 0 0 0;
+
+       `
+    }}
 
 `
 
@@ -145,15 +159,15 @@ export const StyledStore = styled.div`
   display: flex;
   flex-direction: row;
   margin : 0 auto;
-  border : 1px solid black;
+  justify-content: center;
 `
 
 export const StyledStoreItem = styled.div`
-  background-image: -webkit-radial-gradient(circle at top right,white,#999);
-  background-image: -o-radial-gradient(circle at top right,white,#999);
-  background-image: -moz-radial-gradient(circle at top right,white,#999);
-  background-image: radial-gradient(circle at top right,white,#999);
-  border : 5px solid #dfdedc;
+  background-image: -webkit-radial-gradient(circle at top right,white,#f51159,#7c07c5);
+  background-image: -o-radial-gradient(circle at top right,white,#f51159,#7c07c5);
+  background-image: -moz-radial-gradient(circle at top right,white,#f51159,#7c07c5);
+  background-image: radial-gradient(circle at top right,white,#f51159,#7c07c5);
+  border : 5px solid #2e4967;
   width : 80px;
   height : 80px;
   border-radius: 80px;
@@ -166,10 +180,35 @@ export const StyledStoreItem = styled.div`
   }
 
   .storeItemImage{
-     
+
   }
 
   .separator{
     width : 50px;
   }
+`
+
+export const StoreInitialTitle = styled.p`
+     text-align: center;
+     font-family: 'Patua One', cursive;
+     font-size: 30px;
+     width : 550px;
+     margin : 150px;
+     .first_part {
+       color : #f51159;
+
+     }
+
+     .second_part{
+       color : white;
+       background: #7c07c5;
+       border-radius: 10px;
+       padding: 0 10px 0 10px;
+       box-shadow: 2px 2px 4px #9d9a9a;
+
+     }
+
+     .third_part{
+       color : #3e02fd;
+     }
 `
