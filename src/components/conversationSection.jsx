@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import $ from 'jquery';
 import {recognition,synthVoice} from '../speechWeb';
 import {StyledConversation} from '../styledComponents/styledComponents';
 import UserSpeaker from './userSpeaker';
@@ -10,7 +11,7 @@ export default class ConversationSection extends Component {
           super(props);
           this.state = {
               userTitle : "you",
-              botTitle : "our bot",
+              botTitle : "grover bot",
               userSpeaking : false,
               botSpeaking : false
           }
@@ -43,24 +44,35 @@ export default class ConversationSection extends Component {
              let text = e.results[last][0].transcript;
 
              console.log('Confidence: ' + e.results[0][0].confidence);
-             this.setState({userTitle : "you",userSpeaking : false});
 
 
-             fetch('/chatbotMessage'  ,{method: "post",
-                 headers: {
+
+             fetch('https://products-chatbot.herokuapp.com/test'  ,{method: "post",
+
+                   headers: {
                   'Accept': 'application/json',
                   'Content-Type': 'application/json' },
+
                   body: JSON.stringify({user_message: text})
                      })
                 .then(res =>{  console.log(res); return  res.json(); })
                 .then(data => {
-                        alert("hi");
+                        alert(JSON.stringify(data));
                         this.setState({botTitle : "our bot is speaking...",botSpeaking : true});
                         synthVoice(data.botResponse);
                 })
                 .catch(err => {
                       alert(err);
                 });
+          });
+
+          $(document).on('utterEnd',(e,time)=>{
+               //alert('uutterEnd');
+               this.setState({botTitle: "grover bot",botSpeaking : false});
+          });
+
+          $(document).on('recognitionEnd',(e)=>{
+            this.setState({userTitle : "you",userSpeaking : false});
           });
         }
 
