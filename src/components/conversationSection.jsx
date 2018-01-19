@@ -47,17 +47,14 @@ export default class ConversationSection extends Component {
 
 
 
-             fetch('https://products-chatbot.herokuapp.com/test'  ,{method: "post",
-
-                   headers: {
-                  'Accept': 'application/json',
-                  'Content-Type': 'application/json' },
-
-                  body: JSON.stringify({user_message: text})
-                     })
+        fetch('https://products-chatbot.herokuapp.com/chatbotMessage/' + text  ,{method : "get",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }})
                 .then(res =>{  console.log(res); return  res.json(); })
                 .then(data => {
-                        alert(JSON.stringify(data));
+                        alert(JSON.stringify(data.data));
                         this.setState({botTitle : "our bot is speaking...",botSpeaking : true});
                         synthVoice(data.botResponse);
                 })
