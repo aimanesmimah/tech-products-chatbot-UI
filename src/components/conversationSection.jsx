@@ -13,21 +13,32 @@ export default class ConversationSection extends Component {
               userTitle : "you",
               botTitle : "grover bot",
               userSpeaking : false,
+              wait : false,
               botSpeaking : false
           }
 
           this.onClick = this.onClick.bind(this);
-
+          this.synthesis = null;
         }
 
         onClick(e,speaker){
            const {appContext} = this.props;
+           const {botSpeaking} = this.state;
+
            e.preventDefault();
            if(speaker === "user"){
+               if(botSpeaking){
+                    this.setState({userTitle : "wait until he finishes",wait:true});
+                    setTimeout(()=>{
+                        this.setState({userTitle : "you",wait:false});
+                    },2000);
+               }
+               else{
                this.setState({userTitle : "you are speaking...",userSpeaking : true});
                appContext.setState({conversationState : 'started'});
 
                recognition.start();
+             }
 
            }
            else{
@@ -39,6 +50,7 @@ export default class ConversationSection extends Component {
         }
 
         componentDidMount(){
+
           recognition.addEventListener('result',(e)=>{
              let last = e.results.length - 1 ;
              let text = e.results[last][0].transcript;
@@ -54,9 +66,10 @@ export default class ConversationSection extends Component {
         }})
                 .then(res =>{  console.log(res); return  res.json(); })
                 .then(data => {
-                        alert(JSON.stringify(data.data));
+                        alert(JSON.stringify(data));
+                        $(document).trigger('newData',[data]);
                         this.setState({botTitle : "our bot is speaking...",botSpeaking : true});
-                        synthVoice(data.botResponse);
+                        this.synthesis = synthVoice(data.botResponse);
                 })
                 .catch(err => {
                       alert(err);
@@ -71,15 +84,20 @@ export default class ConversationSection extends Component {
           $(document).on('recognitionEnd',(e)=>{
             this.setState({userTitle : "you",userSpeaking : false});
           });
+
+          $(document).on('newConversation',()=>{
+            if(this.synthesis !== null)
+              this.synthesis.cancel();
+          });
         }
 
 
         render(){
           const {appContext} = this.props;
-          const {userTitle,botTitle,userSpeaking,botSpeaking} = this.state;
+          const {userTitle,botTitle,userSpeaking,botSpeaking,wait} = this.state;
           return (
            <StyledConversation>
-                <UserSpeaker title={userTitle} isSpeaking={userSpeaking} onClick={this.onClick} />
+                <UserSpeaker title={userTitle} isSpeaking={userSpeaking} wait={wait} onClick={this.onClick} />
                 <BotSpeaker title={botTitle} isSpeaking={botSpeaking} onClick={this.onClick} />
            </StyledConversation> )
          }

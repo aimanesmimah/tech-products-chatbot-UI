@@ -2,7 +2,7 @@ import styled,{css} from 'styled-components';
 import {injectGlobal} from 'styled-components';
 
 injectGlobal`
-  @import url('https://fonts.googleapis.com/css?family=Patua+One|Raleway|Macondo|Exo+2|Acme');
+  @import url('https://fonts.googleapis.com/css?family=Changa+One|Patua+One|Raleway|Macondo|Exo+2|Acme|Sigmar+One');
   `
 
 export const StyledAppTemplate = styled.div`
@@ -42,13 +42,18 @@ export const AppMenuItem = styled.li`
 export const AppMenuLink = styled.a`
   color : #1a1a1c;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
+  /*font-family: 'Sigmar One', cursive;
+  font-family: 'Press Start 2P', cursive;*/
+  font-family: 'Changa One', cursive;
 
   transition: color 0.5s ease;
+  transition: font-size 0.5s ease;
 
   &:hover{
     color :#37e2dd;
+    font-size: 23px
   }
 
 `
@@ -167,16 +172,57 @@ export const StyledStoreItem = styled.div`
   background-image: -o-radial-gradient(circle at top right,white,#f51159,#7c07c5);
   background-image: -moz-radial-gradient(circle at top right,white,#f51159,#7c07c5);
   background-image: radial-gradient(circle at top right,white,#f51159,#7c07c5);
-  border : 5px solid #2e4967;
-  width : 80px;
-  height : 80px;
-  border-radius: 80px;
+
+
+  ${({dreamProduct}) => {
+    if(dreamProduct)
+      return css`
+          border : 10px solid #2e4967;
+          width : 200px;
+          height : 200px;
+          border-radius: 150px;
+          margin : -70px 0 0 -70px;
+
+      `
+    else
+       return css`
+         border : 5px solid #2e4967;
+         width : 80px;
+         height : 80px;
+         border-radius: 80px;
+       `
+    }}
 
   .storeItemTitle {
     font-family: 'Macondo', cursive;
     font-size: 13px;
     font-weight: bold;
     margin : 8px 0 0 0;
+  }
+
+  .storeItemTitleAlone{
+    font-family: 'Macondo', cursive;
+    font-size: 12px;
+    font-weight: bold;
+    margin : 15px 0 0 0;
+  }
+
+  .storeItemTitleDreamProduct{
+    font-family: 'Macondo', cursive;
+    font-size: 20px;
+    font-weight: bold;
+    margin : 15px 0 0 0;
+  }
+
+   .dreamProduct{
+       margin-top : 50px;
+   }
+
+  .subscriptionPlan{
+    font-family: 'Macondo', cursive;
+    font-size: 16px;
+    font-weight: bold;
+    margin : 5px 0 0 0;
   }
 
   .storeItemImage{
@@ -194,6 +240,10 @@ export const StoreInitialTitle = styled.p`
      font-size: 30px;
      width : 550px;
      margin : 150px;
+
+     ${({display}) => !display && css` display : none ; `  }
+
+
      .first_part {
        color : #f51159;
 
@@ -211,4 +261,12 @@ export const StoreInitialTitle = styled.p`
      .third_part{
        color : #3e02fd;
      }
+`
+
+export const StyledStoreMenu = styled.div`
+  margin : 0 ;
+  padding :  0 ;
+
+  ${({display}) => !display && css` display : none ; `  }
+
 `

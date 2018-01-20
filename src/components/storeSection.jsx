@@ -24,19 +24,15 @@ export default class StoreSection extends Component {
 
         render(){
           const {className} = this.state;
-          const {conversationState} = this.props;
+          const {conversationState,newConversation} = this.props;
           return (
            <StyledStore>
-             {
-               (conversationState === "nothing")?
-                     <StoreInitialTitle className={className}>
+                     <StoreInitialTitle className={className} display={conversationState === "nothing"}>
                            <span className="first_part">Start off by clicking on your microphone</span>
                            <span className="second_part"> and say HI</span>
                            <span className="third_part"> to our bot</span>
-                     </StoreInitialTitle> :
-                      <StoreMenu />
-
-             }
+                     </StoreInitialTitle>
+                     <StoreMenu newConversation={newConversation} display={conversationState !== "nothing"}/>
            </StyledStore>)
         }
 }

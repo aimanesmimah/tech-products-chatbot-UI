@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import $ from 'jquery';
 import {StyledAppTemplate,AppTemplateBody} from '../styledComponents/styledComponents';
 import AppBar from './appBar';
 import ConversationSection from './conversationSection';
@@ -14,6 +15,12 @@ export default class AppTemplate extends Component {
 
    }
 
+   componentDidMount(){
+     $(document).on('newConversation',(e)=>{
+       this.setState({conversationState : 'nothing'});
+     });
+   }
+
    render(){
      const {title} = this.props;
      const {conversationState} = this.state;
@@ -22,7 +29,7 @@ export default class AppTemplate extends Component {
        <AppBar title={title} />
        <AppTemplateBody>
            <ConversationSection appContext={this} />
-           <StoreSection conversationState={conversationState} />
+           <StoreSection conversationState={conversationState}/>
        </AppTemplateBody>
      </StyledAppTemplate> )
    }

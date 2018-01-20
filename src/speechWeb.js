@@ -29,4 +29,6 @@ export const synthVoice = (text,utterance=utterThis) => {
       $(document).trigger("utterEnd",[e.elapsedTime]);
     });
 
+    return synth;
+
 }

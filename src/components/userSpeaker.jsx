@@ -4,9 +4,9 @@ import '../common/css/animate.min.css';
 import speaker from '../common/images/speak.png';
 
 
-const UserSpeaker = ({isSpeaking,title,onClick}) => {
+const UserSpeaker = ({isSpeaking,title,wait,onClick}) => {
       let className ;
-      if(isSpeaking)
+      if(isSpeaking || wait)
         className = "animated wobble";
       else
         className = "";

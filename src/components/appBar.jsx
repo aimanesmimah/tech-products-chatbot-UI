@@ -28,12 +28,6 @@ class AppBar extends Component {
           </div>
         </BarLeftBox>
         <BarRightBox>
-          <div>
-            <p>Avatar</p>
-          </div>
-          <div>
-
-          </div>
         </BarRightBox>
   </StyledAppBar>
     )
