@@ -1,4 +1,6 @@
-This is a react app created by Facebook utility `create-react-app`.
+#tech-products-chatbot-UI
+
+Our client app built with react library and the project was set up & initialized with Facebook utility `create-react-app`.
 
 
 ## Install
