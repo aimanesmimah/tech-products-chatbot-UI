@@ -51,7 +51,7 @@ const mapItems = items => {
                 image : watch
               }
               break;
-            case 'smart home' :
+            case 'home smart' :
               return {
                 name : item,
                 image : smarthome
