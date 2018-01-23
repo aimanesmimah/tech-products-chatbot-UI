@@ -159,6 +159,14 @@ export const StyledConversation = styled.div`
   justify-content: space-between;
 `
 
+export const StyledTexting = styled.div`
+  margin : 0 auto 10px auto;
+  width : 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`
+
 export const StyledStore = styled.div`
   width : 80%;
   display: flex;
@@ -181,7 +189,7 @@ export const StyledStoreItem = styled.div`
           width : 200px;
           height : 200px;
           border-radius: 150px;
-          margin : -70px 0 0 -70px;
+          margin : -140px 0 0 -70px;
 
       `
     else
@@ -269,4 +277,154 @@ export const StyledStoreMenu = styled.div`
 
   ${({display}) => !display && css` display : none ; `  }
 
+`
+
+export const InputSection = styled.div`
+  position: relative;
+  margin : 0 auto ;
+  padding : 0 ;
+  width : 300px;
+`
+
+export const MessageLogo = styled.img`
+  position: absolute;
+  top : 8px ;
+  right : 10px;
+  width : 30px;
+  height : 30px;
+
+`
+
+export const UserTextArea = styled.input`
+  border-radius : 10px;
+  border : none;
+  box-shadow: 1px 1px 6px #d7d0d5;
+  height : 40px;
+  width : 300px;
+  margin : auto;
+  background-color: #f4f7f9;
+  outline : none;
+  font-size : 18px;
+  text-align: center;
+  &:focus {
+    outline : none;
+  }
+
+  &::placeholder {
+    color : #b6b2b5;
+    font-size: 13px;
+    text-align: center;
+  }
+`
+
+export const StyledChat = styled.div`
+   display: flex;
+   flex-direction: column;
+   /*border : 1px solid black;*/
+   background-color: #d5d1d1;
+   border : 2px dashed #baacbb;
+   border-radius: 7px;
+   margin : 0 0 10px 0;
+   padding : 10px 0;
+`
+
+export const MessageContainer = styled.div`
+  position: relative;
+  min-height : 40px;
+`
+
+export const Message = styled.div`
+   position  : absolute;
+   right : 10px;
+   border-radius: 12px;
+   background-color: #5f6363;
+   padding : 5px 10px;
+   box-shadow: 1px 1px 2px 0.1px black;
+   max-width: 300px;
+   color : #d0d0cb;
+   font-family: 'Acme', sans-serif;
+
+   transition: transform 0.8s ease;
+   &:hover{
+      position: absolute;
+      z-index : 50;
+      transform: scale(1.5,1.5);
+   }
+
+   ${({length}) => {
+     if(length < 100)
+       return css`
+           font-size: 15px;
+
+       `
+     else if(length < 200)
+       return css`
+           font-size: 12px;
+
+       `
+     else
+        return css`
+          font-size: 10px;
+        `
+     }}
+`
+
+export const ReplyContainer = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding : 0 0 0 10px;
+  min-height : 40px
+`
+
+export const Logo = styled.img`
+
+  ${({size}) => size && css`
+          width : ${size}px ;
+          height : ${size}px;  `  }
+
+  ${({marginAuto}) => {
+      if(marginAuto)
+        return css`
+          margin : 0 auto 15px auto;
+              `
+      else
+        return css`
+          margin-right : 10px;
+               `
+            }}
+`
+
+export const Reply = styled.div`
+    border-radius: 12px;
+    background-color: #5f6363;
+    padding : 10px 10px;
+    box-shadow: 1px 1px 2px 0.1px black;
+    max-width: 350px;
+    color : #d0d0cb;
+    font-family: 'Acme', sans-serif;
+    transition: transform 0.8s ease;
+    &:hover{
+       position: absolute;
+       z-index : 50;
+       transform: scale(1.5,1.5);
+    }
+
+    ${({length}) => {
+      if(length < 100)
+        return css`
+            font-size: 15px;
+
+        `
+      else if(length < 200)
+        return css`
+            font-size: 12px;
+
+        `
+      else
+         return css`
+           font-size: 10px;
+         `
+      }}
 `

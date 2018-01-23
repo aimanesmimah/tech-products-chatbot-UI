@@ -22,6 +22,7 @@ export default class StoreMenu extends React.Component {
   }
 
   componentDidMount(){
+    const {source} = this.props;
 
       $(document).ready(() => {
         $(".trigger").click(() => {
@@ -63,10 +64,16 @@ export default class StoreMenu extends React.Component {
 
                  this.setState({currentItems : mappedItems});
 
-                 setTimeout(()=> {
-                      $('.menu').toggleClass("active");
-                      this.setState({activeToggled : true});
-                 },3500);
+                 if(source === "conversation"){
+                     setTimeout(()=> {
+                          $('.menu').toggleClass("active");
+                          this.setState({activeToggled : true});
+                     },3500);
+                   }
+                 else{
+                     $('.menu').toggleClass("active");
+                     this.setState({activeToggled : true});
+                   }
 
 
                }
@@ -82,9 +89,9 @@ export default class StoreMenu extends React.Component {
   render() {
     const {currentItems,productFound} = this.state;
     const {display} = this.props;
-    //alert(currentItems);
+
     return (
-      <StyledStoreMenu display={display}>
+      <StyledStoreMenu display={display} >
         {
       (productFound)?
         <div className="menu">

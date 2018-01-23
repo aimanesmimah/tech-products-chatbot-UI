@@ -24,15 +24,24 @@ export default class StoreSection extends Component {
 
         render(){
           const {className} = this.state;
-          const {conversationState,newConversation} = this.props;
+          const {conversationState,textingState,newConversation,source} = this.props;
           return (
-           <StyledStore>
-                     <StoreInitialTitle className={className} display={conversationState === "nothing"}>
-                           <span className="first_part">Start off by clicking on your microphone</span>
-                           <span className="second_part"> and say HI</span>
-                           <span className="third_part"> to our bot</span>
-                     </StoreInitialTitle>
-                     <StoreMenu newConversation={newConversation} display={conversationState !== "nothing"}/>
-           </StyledStore>)
+            (source === "conversation")?
+               <StyledStore>
+                         <StoreInitialTitle className={className} display={conversationState === "nothing"}>
+                               <span className="first_part">Start off by clicking on your microphone</span>
+                               <span className="second_part"> and say HI</span>
+                               <span className="third_part"> to our bot</span>
+                         </StoreInitialTitle>
+                         <StoreMenu newConversation={newConversation} display={conversationState !== "nothing"} source="conversation"/>
+               </StyledStore> :
+               <StyledStore>
+                         <StoreInitialTitle className={className} display={textingState === "nothing"}>
+                               <span className="first_part">Start off by clicking on your microphone</span>
+                               <span className="second_part"> and say HI</span>
+                               <span className="third_part"> to our bot</span>
+                         </StoreInitialTitle>
+                         <StoreMenu newConversation={newConversation} display={textingState !== "nothing"} source="texting"/>
+               </StyledStore>)
         }
 }

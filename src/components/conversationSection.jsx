@@ -66,7 +66,7 @@ export default class ConversationSection extends Component {
         }})
                 .then(res =>{  console.log(res); return  res.json(); })
                 .then(data => {
-                        alert(JSON.stringify(data));
+                        //alert(JSON.stringify(data));
                         $(document).trigger('newData',[data]);
                         this.setState({botTitle : "our bot is speaking...",botSpeaking : true});
                         this.synthesis = synthVoice(data.botResponse);

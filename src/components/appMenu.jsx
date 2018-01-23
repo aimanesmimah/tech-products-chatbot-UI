@@ -10,27 +10,20 @@ class AppMenu extends React.Component {
 
     }
 
-    this.onNewClick = this.onNewClick.bind(this);
-
-  }
-
-  onNewClick(e){
-    e.preventDefault();
-    $(document).trigger('newConversation');
   }
 
   render(){
     const {title} = this.props;
     return (
     <StyledAppMenu>
-      <AppMenuItem active={title === "new"} >
-        <AppMenuLink  href="#" onClick={this.onNewClick}>
-             new conversation
+      <AppMenuItem active={title === "conversation"} >
+        <AppMenuLink  href="#/conversation" >
+             Conversation
         </AppMenuLink>
       </AppMenuItem>
-      <AppMenuItem active={title === "contact"}>
-        <AppMenuLink  href="#" >
-           contact
+      <AppMenuItem active={title === "texting"}>
+        <AppMenuLink  href="#/texting" >
+            Texting
         </AppMenuLink>
       </AppMenuItem>
     </StyledAppMenu>

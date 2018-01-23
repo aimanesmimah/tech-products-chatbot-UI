@@ -1,0 +1,9 @@
+.conversation-container > .header {
+  background-color: red;
+  height : 30px;
+
+}
+
+.conversation-container {
+  right : 90px
+}
