@@ -17,6 +17,12 @@ export const StyledAppTemplate = styled.div`
 
 export const AppTemplateBody = styled.div`
   margin : 100px 0 0 0 ;
+
+  ${({title,textingState}) => title === "texting" && textingState === "started" && css`
+    display : flex;
+    flex-direction : row-reverse;
+  `  }
+
 `
 
 export const StyledAppMenu = styled.ul`
@@ -160,11 +166,17 @@ export const StyledConversation = styled.div`
 `
 
 export const StyledTexting = styled.div`
-  margin : 0 auto 10px auto;
+  margin : 20px 0 10px 30%;
   width : 40%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+
+  ${({textingState}) => textingState === "started" && css`
+    margin : 10px 0 0 5% ;
+  `  }
+
 `
 
 export const StyledStore = styled.div`
@@ -189,7 +201,7 @@ export const StyledStoreItem = styled.div`
           width : 200px;
           height : 200px;
           border-radius: 150px;
-          margin : -140px 0 0 -70px;
+          margin : -60px 0 0 -70px;
 
       `
     else
@@ -247,7 +259,7 @@ export const StoreInitialTitle = styled.p`
      font-family: 'Patua One', cursive;
      font-size: 30px;
      width : 550px;
-     margin : 150px;
+     margin : 40px 100px 100px 100px ;
 
      ${({display}) => !display && css` display : none ; `  }
 
@@ -318,14 +330,32 @@ export const UserTextArea = styled.input`
 `
 
 export const StyledChat = styled.div`
-   display: flex;
-   flex-direction: column;
-   /*border : 1px solid black;*/
-   background-color: #d5d1d1;
-   border : 2px dashed #baacbb;
-   border-radius: 7px;
-   margin : 0 0 10px 0;
-   padding : 10px 0;
+
+`
+
+export const ChatContainer = styled.div`
+  display: flex;
+  flex-direction: column-reverse;
+  background-color: #d5d1d1;
+  border : 2px dashed #baacbb;
+  border-radius: 7px;
+  margin : 0 0 10px 0;
+  padding : 10px 0;
+  height : 400px;
+  width : 530px;
+`
+
+export const ChatItemsContainer = styled.div`
+  width : 535px;
+  max-height: 400px;
+  overflow-y: auto;
+
+
+`
+
+export const ChatItemContainer = styled.div`
+  height: 130px;
+  border : none;
 `
 
 export const MessageContainer = styled.div`
@@ -335,7 +365,8 @@ export const MessageContainer = styled.div`
 
 export const Message = styled.div`
    position  : absolute;
-   right : 10px;
+   right : 15px;
+   top : 5px;
    border-radius: 12px;
    background-color: #5f6363;
    padding : 5px 10px;
@@ -344,11 +375,11 @@ export const Message = styled.div`
    color : #d0d0cb;
    font-family: 'Acme', sans-serif;
 
-   transition: transform 0.8s ease;
+   transition: transform 0.4s ease;
    &:hover{
       position: absolute;
       z-index : 50;
-      transform: scale(1.5,1.5);
+      transform: scale(1.3,1.3);
    }
 
    ${({length}) => {
@@ -404,11 +435,12 @@ export const Reply = styled.div`
     max-width: 350px;
     color : #d0d0cb;
     font-family: 'Acme', sans-serif;
-    transition: transform 0.8s ease;
+    transition: transform 0.4s ease;
     &:hover{
        position: absolute;
        z-index : 50;
-       transform: scale(1.5,1.5);
+       left : 12%;
+       transform: scale(1.3,1.3);
     }
 
     ${({length}) => {

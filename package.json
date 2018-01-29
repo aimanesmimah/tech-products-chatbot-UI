@@ -12,6 +12,7 @@
     "react-chat-widget": "^2.1.2",
     "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2",
+    "react-scroll": "^1.7.6",
     "react-spinners": "^0.2.5",
     "styled-components": "^2.4.0"
   },
@@ -26,5 +27,6 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
-  }
+  },
+  "proxy" : "http://localhost:7000"
 }

@@ -37,7 +37,7 @@ export default class StoreMenu extends React.Component {
         $(document).on('newData',(e,newData) => {
             const {activeToggled} = this.state;
 
-
+            //alert(JSON.stringify(newData.data));
             if(activeToggled){
                 $('.menu').toggleClass('active');
                 this.setState({activeToggled : false});
@@ -46,8 +46,10 @@ export default class StoreMenu extends React.Component {
 
             //alert(JSON.stringify(newData));
             if(newData.data && newData.data.payload && newData.currentState !== "nothing"){
-               if(newData.currentState === "product" && newData.data.payload.items.length === 1){
-                    this.setState({productFound : true});
+              //alert(JSON.stringify(newData));
+               if(newData.currentState === "dreamProduct"){
+                    this.setState({productFound : true,currentItems: mapItems(newData.data.payload.items)});
+
                }
                else{
                  let items = newData.data.payload.items;
@@ -78,6 +80,11 @@ export default class StoreMenu extends React.Component {
 
                }
 
+            }
+            else{
+              if(this.state.productFound){
+                this.setState({productFound : false});
+              }
             }
         });
 

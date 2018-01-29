@@ -4,10 +4,10 @@ import {StyledAppTemplate,AppTemplateBody} from '../styledComponents/styledCompo
 import AppBar from './appBar';
 
 
-const AppTemplate = ({title,children}) =>
-           <StyledAppTemplate>
+const AppTemplate = ({title,children,textingState}) =>
+           <StyledAppTemplate textingState={textingState}>
              <AppBar title={title} />
-             <AppTemplateBody>
+             <AppTemplateBody title={title} textingState={textingState}>
                  {children}
              </AppTemplateBody>
            </StyledAppTemplate>

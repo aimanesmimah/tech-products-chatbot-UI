@@ -20,9 +20,9 @@ export default class Texting extends Component {
      render(){
        const {textingState} = this.state;
        return (
-         <AppTemplate title="texting">
-           <TextingSection appContext={this} />
+         <AppTemplate title="texting" textingState={textingState}>
            <StoreSection textingState={textingState} source="texting"/>
+           <TextingSection appContext={this} />
          </AppTemplate>
        )
      }

@@ -37,7 +37,8 @@ export default class StoreSection extends Component {
                </StyledStore> :
                <StyledStore>
                          <StoreInitialTitle className={className} display={textingState === "nothing"}>
-                               <span className="first_part">Start off by clicking on your microphone</span>
+                               <span className="first_part">Start off</span>
+                               <br/>
                                <span className="second_part"> and say HI</span>
                                <span className="third_part"> to our bot</span>
                          </StoreInitialTitle>

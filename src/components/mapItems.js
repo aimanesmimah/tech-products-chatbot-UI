@@ -15,7 +15,7 @@ const mapItems = items => {
          if(typeof item === 'object'){
              return {
                name : item.name,
-               price : item.price,
+               price : (item.price)?item.price : item.subprice,
                image : null
              }
          }
